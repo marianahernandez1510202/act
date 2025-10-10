@@ -3,12 +3,13 @@ var router = express.Router();
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 
+
 router.use(express.json());
 const key = crypto.randomBytes(32); // Genera una clave de 32 bytes (256 bits)
 const iv = crypto.randomBytes(16);  // Genera un IV de 16 bytes
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) { // Removido 'next' no usado
   res.render('index', { title: 'Express' });
 });
 

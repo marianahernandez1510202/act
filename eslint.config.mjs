@@ -1,8 +1,20 @@
-import js from "@eslint/js";
 import globals from "globals";
-import { defineConfig } from "eslint/config";
+import pluginJs from "@eslint/js";
+import pluginJest from "eslint-plugin-jest";
 
-export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.browser } },
-  { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
-]);
+export default [
+  {
+    languageOptions: {
+      globals: globals.node
+    },
+    rules: pluginJs.configs.recommended.rules
+  },
+  {
+    files: ["test/**/*.js"],
+    plugins: { jest: pluginJest },
+    languageOptions: {
+      globals: globals.jest
+    },
+    rules: pluginJest.configs.recommended.rules
+  }
+];
